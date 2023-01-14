@@ -45,3 +45,13 @@ export type CartStateType = {
    */
   totalAmount: number;
 };
+
+/**
+ * 购物车操作函数上下文类型
+ */
+export type CartContextType = {
+  setCartHandler: (
+    mealData: MealDataType,
+    operationType: Readonly<"add" | "delete" | "clear">
+  ) => void;
+};
