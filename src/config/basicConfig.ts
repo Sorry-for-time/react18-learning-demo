@@ -1,7 +1,11 @@
+import { CommonToolCollection } from "@/utils/CommonToolCollection";
 import { setBasicLayoutUnit } from "@/utils/setBasicLayoutUnit";
 
-setBasicLayoutUnit();
-window.visualViewport?.addEventListener("resize", (): void => {
+/**
+ * 设置布局
+ */
+function setLayout(): void {
+  console.log("<----------layout change--------->");
   const toLowerCaseUserAgent: string = navigator.userAgent.toLowerCase();
   if (
     toLowerCaseUserAgent.includes("iphone") ||
@@ -11,4 +15,13 @@ window.visualViewport?.addEventListener("resize", (): void => {
   } else {
     setBasicLayoutUnit(import.meta.env.VITE_PC_VIEWPORT_UNIT);
   }
-});
+}
+
+// 设置初始状态
+setLayout();
+
+// 监听窗口大小改变
+window.visualViewport?.addEventListener(
+  "resize",
+  CommonToolCollection.debounce(setLayout, 500, true)
+);
