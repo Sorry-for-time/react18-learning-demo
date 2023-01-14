@@ -9,21 +9,11 @@ import mealListStyle from "./MealList.module.scss";
  */
 export function MealList(props: {
   dataList: Array<MealDataType>;
-  setCartHandler: (
-    aMeal: MealDataType,
-    operationType: "add" | "delete"
-  ) => void;
 }): JSX.Element {
   return (
     <div className={mealListStyle["meal-list"]}>
       {props.dataList.map((item: MealDataType): JSX.Element => {
-        return (
-          <Meal
-            key={item.id}
-            mealData={item}
-            setCartHandler={props.setCartHandler}
-          />
-        );
+        return <Meal key={item.id} mealData={item} />;
       })}
     </div>
   );

@@ -2,6 +2,7 @@ import ORIGIN_MEAL_DATA from "@/assets/data/mealData.json";
 import { MealList } from "@/components/mealList/MealList";
 import type { CartStateType, MealDataType } from "@/interface/typeDefine";
 import { useState } from "react";
+import { CartContext } from "./store/CartContext";
 
 /**
  * 商品默认信息展示数组
@@ -98,7 +99,13 @@ export function App(): JSX.Element {
         overflow: "auto"
       }}
     >
-      <MealList dataList={mealListState} setCartHandler={setCartHandler} />
+      <CartContext.Provider
+        value={{
+          setCartHandler
+        }}
+      >
+        <MealList dataList={mealListState} />
+      </CartContext.Provider>
     </div>
   );
 }

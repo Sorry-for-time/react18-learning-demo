@@ -1,5 +1,7 @@
-import { MealDataType } from "@/interface/typeDefine";
 import { Counter } from "@/components/ui/counter/Counter";
+import type { CartContextType, MealDataType } from "@/interface/typeDefine";
+import { CartContext } from "@/store/CartContext";
+import { useContext } from "react";
 import MealStyle from "./Meal.module.scss";
 
 /**
@@ -16,17 +18,15 @@ export function Meal(props: {
   mealData: MealDataType & {
     count?: number;
   };
-  setCartHandler: (
-    aMeal: MealDataType,
-    operationType: "add" | "delete"
-  ) => void;
 }): JSX.Element {
+  const { setCartHandler } = useContext<CartContextType>(CartContext);
+
   const whenCartDelete: VoidFunction = (): void => {
-    props.setCartHandler(props.mealData, "delete");
+    setCartHandler(props.mealData, "delete");
   };
 
   const whenCartAdd: VoidFunction = (): void => {
-    props.setCartHandler(props.mealData, "add");
+    setCartHandler(props.mealData, "add");
   };
 
   return (
