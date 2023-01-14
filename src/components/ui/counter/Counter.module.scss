@@ -1,0 +1,43 @@
+.counter-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 26rem;
+  font-weight: normal;
+  column-gap: 10rem;
+}
+
+.ct-text {
+  min-width: 36rem;
+  text-align: center;
+}
+
+.ct-button {
+  border: none;
+  outline: none;
+  background: none;
+  border-radius: 50%;
+  width: 50rem;
+  height: 50rem;
+  overflow: hidden;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: 200ms ease-out;
+
+  &:active {
+    box-shadow: 0 0 5px wheat;
+    transform: scale(1.01);
+  }
+}
+
+.bt-minus {
+  color: rgba(128, 128, 128, 0.986);
+  border: 1px solid rgba(128, 128, 128, 0.986);
+}
+
+.bt-plus {
+  background-color: rgb(255, 207, 118);
+}
