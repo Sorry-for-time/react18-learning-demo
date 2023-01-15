@@ -52,10 +52,10 @@ export abstract class CommonToolCollection {
   ): T => {
     // 监听器引用记录
     let timer: number;
-
+    const temp: Int8Array = new Int8Array([startImmediate ? 1 : 0]);
     return ((...params: Array<any>): void => {
-      if (startImmediate) {
-        startImmediate = false;
+      if (temp[0]) {
+        Atomics.xor(temp, 0, 1);
         timer = window.setTimeout((): void => {
           executeFn.call(thisArg, ...params);
         });
