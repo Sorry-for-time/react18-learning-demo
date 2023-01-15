@@ -20,7 +20,7 @@ export abstract class CommonToolCollection {
     const temp: Int8Array = new Int8Array([startImmediate ? 1 : 0]);
     return ((...params: Array<any>): void => {
       if (temp[0]) {
-        Atomics.xor(temp, 0, 1);
+        Atomics.xor(temp, 1, 0);
         executeFn(thisArg, ...params);
       } else {
         if (signal[0]) {
