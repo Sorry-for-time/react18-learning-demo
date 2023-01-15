@@ -2,6 +2,7 @@ import ORIGIN_MEAL_DATA from "@/assets/data/mealData.json";
 import { MealList } from "@/components/mealList/MealList";
 import type { CartStateType, MealDataType } from "@/interface/typeDefine";
 import { useState } from "react";
+import AppStyle from "./App.module.scss";
 import { FilterMealList } from "./components/filterMeal/FilterMealList";
 import { CartContext } from "./store/CartContext";
 
@@ -96,17 +97,12 @@ export function App(): JSX.Element {
   };
 
   return (
-    <div
-      style={{
-        width: "100%",
-        height: "100%",
-        overflow: "auto"
-      }}
-    >
+    <div className={AppStyle["app-wrapper"]}>
       <FilterMealList
         filterHandler={setMealListState}
         originalList={allMealList}
       />
+
       <CartContext.Provider
         value={{
           setCartHandler
@@ -114,6 +110,7 @@ export function App(): JSX.Element {
       >
         <MealList dataList={mealListState} />
       </CartContext.Provider>
+      <div></div>
     </div>
   );
 }

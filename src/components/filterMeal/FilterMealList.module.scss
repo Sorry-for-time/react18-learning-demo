@@ -1,11 +1,8 @@
 .filter-wrapper {
-  z-index: 22;
-  position: absolute;
   width: 100%;
   top: 0;
-  height: 100rem;
-  backdrop-filter: blur(12px);
   background-color: rgba(255, 255, 255, 0.479);
+  box-sizing: border-box;
   border-bottom: 1px solid rgb(235, 235, 235);
 }
 
