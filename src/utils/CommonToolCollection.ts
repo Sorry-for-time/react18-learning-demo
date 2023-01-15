@@ -16,23 +16,20 @@ export abstract class CommonToolCollection {
     startImmediate: boolean = true,
     thisArg: object | null = null
   ): T => {
-    // 锁信号量
-    const signal: Int8Array = new Int8Array([0]);
-
+    const signal: Int8Array = new Int8Array([1]);
+    const temp: Int8Array = new Int8Array([startImmediate ? 1 : 0]);
     return ((...params: Array<any>): void => {
-      if (startImmediate) {
-        startImmediate = false;
+      if (temp[0]) {
+        Atomics.xor(temp, 0, 1);
         executeFn(thisArg, ...params);
       } else {
-        // 如果当前信号量为 1, 那么中断本次执行
         if (signal[0]) {
           return;
         }
-        // 上锁
         Atomics.xor(signal, 0, 1);
-        window.setTimeout((): void => {
+        setTimeout((): void => {
           executeFn.call(thisArg, ...params);
-          // 执行完后进行解锁
+          // release signal
           Atomics.xor(signal, 0, 1);
         }, wait);
       }
