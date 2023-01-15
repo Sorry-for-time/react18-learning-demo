@@ -50,8 +50,23 @@ export type CartStateType = {
  * 购物车操作函数上下文类型
  */
 export type CartContextType = {
+  /**
+   * 购物车状态数据
+   */
+  cartState: CartStateType;
+  /**
+   * 更新购物车
+   * @param mealData 商品数据
+   * @param operationType 操作类型
+   * @returns
+   */
   setCartHandler: (
     mealData: MealDataType,
-    operationType: Readonly<"add" | "delete" | "clear">
+    operationType: Readonly<"add" | "delete">
   ) => void;
+  /**
+   * 清空购物车
+   * @returns
+   */
+  clearCart: () => void;
 };

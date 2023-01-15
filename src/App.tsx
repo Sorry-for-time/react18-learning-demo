@@ -1,4 +1,5 @@
 import ORIGIN_MEAL_DATA from "@/assets/data/mealData.json";
+import { CartBar } from "@/components/cartBar/CartBar";
 import { MealList } from "@/components/mealList/MealList";
 import type { CartStateType, MealDataType } from "@/interface/typeDefine";
 import { useState } from "react";
@@ -36,10 +37,11 @@ export function App(): JSX.Element {
    * @param mealData 商品信息
    * @param operationType 操作类型: 添加, 删除, 清空所有
    */
-  const setCartHandler = (
+
+  function setCartHandler(
     mealData: MealDataType,
-    operationType: Readonly<"add" | "delete" | "clear">
-  ): void => {
+    operationType: Readonly<"add" | "delete">
+  ): void {
     // 浅复制数据
     const newCart = { ...cartState };
     // 取得数据在列表里的索引位置, 如果不存在为 `-1`
@@ -78,39 +80,49 @@ export function App(): JSX.Element {
           newCart.totalCount--;
         }
         break;
-      // 清空购物车
-      case "clear":
-        newCart.items = [];
-        newCart.totalAmount = 0;
-        newCart.totalCount = 0;
-        // 将原始数组每项的商品计数信息归 0
-        for (const item of allMealList) {
-          item.count = 0;
-        }
-        break;
+
       default:
         // ...... 假设需要进行其它的操作的话 ..........
         break;
     }
 
     setCartState(() => newCart);
-  };
+  }
+
+  /**
+   * 清空购物车操作
+   */
+  function clearCart(): void {
+    for (const item of allMealList) {
+      item.count = 0;
+    }
+    setCartState(() => {
+      return {
+        items: [],
+        totalAmount: 0,
+        totalCount: 0
+      };
+    });
+  }
 
   return (
-    <div className={AppStyle["app-wrapper"]}>
-      <FilterMealList
-        filterHandler={setMealListState}
-        originalList={allMealList}
-      />
+    <CartContext.Provider
+      value={{
+        setCartHandler,
+        cartState,
+        clearCart
+      }}
+    >
+      <div className={AppStyle["app-wrapper"]}>
+        <FilterMealList
+          filterHandler={setMealListState}
+          originalList={allMealList}
+        />
 
-      <CartContext.Provider
-        value={{
-          setCartHandler
-        }}
-      >
         <MealList dataList={mealListState} />
-      </CartContext.Provider>
-      <div></div>
-    </div>
+
+        <CartBar cartState={cartState} />
+      </div>
+    </CartContext.Provider>
   );
 }
