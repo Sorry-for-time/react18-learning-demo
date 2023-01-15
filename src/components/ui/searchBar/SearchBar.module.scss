@@ -1,0 +1,24 @@
+.search-bar {
+  border-radius: 35rem;
+  border: 1px solid rgb(255, 240, 211);
+  height: 70rem;
+  font-size: 35rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 10rem;
+  color: gray;
+  background-color: rgb(255, 255, 250);
+}
+
+input[type="text"] {
+  width: calc(100% - 100rem);
+  height: 50rem;
+  border: none;
+  font-size: 30rem;
+  background: none;
+
+  &:focus {
+    outline: none;
+  }
+}
