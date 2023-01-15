@@ -2,12 +2,13 @@ import ORIGIN_MEAL_DATA from "@/assets/data/mealData.json";
 import { MealList } from "@/components/mealList/MealList";
 import type { CartStateType, MealDataType } from "@/interface/typeDefine";
 import { useState } from "react";
+import { FilterMealList } from "./components/filterMeal/FilterMealList";
 import { CartContext } from "./store/CartContext";
 
 /**
  * 商品默认信息展示数组
  */
-const mealListState: Array<MealDataType> = ORIGIN_MEAL_DATA.list.map(
+const allMealList: Array<MealDataType> = ORIGIN_MEAL_DATA.list.map(
   (originItem): MealDataType => {
     return {
       ...originItem,
@@ -25,6 +26,9 @@ export function App(): JSX.Element {
     totalCount: 0,
     totalAmount: 0
   });
+
+  const [mealListState, setMealListState] =
+    useState<Array<MealDataType>>(allMealList);
 
   /**
    * 添加购物车操作
@@ -79,7 +83,7 @@ export function App(): JSX.Element {
         newCart.totalAmount = 0;
         newCart.totalCount = 0;
         // 将原始数组每项的商品计数信息归 0
-        for (const item of mealListState) {
+        for (const item of allMealList) {
           item.count = 0;
         }
         break;
@@ -99,6 +103,10 @@ export function App(): JSX.Element {
         overflow: "auto"
       }}
     >
+      <FilterMealList
+        filterHandler={setMealListState}
+        originalList={allMealList}
+      />
       <CartContext.Provider
         value={{
           setCartHandler
