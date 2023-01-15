@@ -1,0 +1,38 @@
+.cart-detail-wrapper {
+  background-color: #fff;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  border-top-left-radius: 30rem;
+  border-top-right-radius: 30rem;
+  max-height: 80%;
+  display: grid;
+}
+
+.header-wrapper {
+  display: flex;
+  align-items: center;
+  font-size: 30rem;
+  color: rgb(85, 85, 85);
+  justify-content: space-between;
+}
+
+.text-desc {
+  margin-left: 20rem;
+  font-weight: bold;
+}
+
+.clear-cart {
+  margin-right: 20rem;
+}
+
+.clear-desc {
+  margin-left: 10rem;
+}
+
+.meals-wrapper {
+  max-height: 600rem;
+  padding-bottom: 130rem;
+  overflow: auto;
+  background-color: white;
+}

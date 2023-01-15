@@ -1,0 +1,78 @@
+.cart-bar {
+  z-index: 23;
+  margin: 5rem auto;
+  display: flex;
+  width: 98%;
+  height: 90rem;
+  border-radius: 45rem;
+  background-color: rgb(46, 46, 46);
+  align-items: center;
+  justify-content: space-between;
+}
+
+.icon-wrapper {
+  position: relative;
+
+  @at-root .bag-size {
+    width: 90rem;
+    height: 90rem;
+    object-fit: contain;
+    transform: translate(-5rem, 0) scale(1.2);
+  }
+
+  @at-root .count-hint {
+    position: absolute;
+    text-align: center;
+    top: -10rem;
+    right: -2rem;
+    width: 34rem;
+    height: 34rem;
+    line-height: 34rem;
+    border-radius: 50%;
+    background-color: red;
+    color: white;
+    font-size: 20rem;
+    font-weight: bold;
+
+    &.when-zero {
+      background-color: gray;
+    }
+  }
+}
+
+.un-selected,
+.cart-price {
+  font-size: 30rem;
+  color: white;
+  font-weight: bolder;
+  width: 55%;
+}
+
+.cart-price::before {
+  content: "¥";
+  font-size: 26rem;
+}
+
+.confirm-btn-wrapper {
+  width: 200rem;
+  height: 90rem;
+  border-radius: 45rem;
+  background-color: rgb(255, 173, 79);
+  overflow: hidden;
+  display: flex;
+
+  @at-root .confirm-btn,
+    .disable-btn {
+    font-size: 30rem;
+    font-weight: bold;
+    width: 100%;
+    background: none;
+    border: none;
+    color: black;
+  }
+
+  @at-root .disable-btn {
+    background-color: gray;
+    color: white;
+  }
+}
