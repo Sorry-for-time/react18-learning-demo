@@ -1,7 +1,7 @@
 import MealStyle from "@/components/mealList/meal/Meal.module.scss";
 import { Backdrop } from "@/components/ui/backdrop/Backdrop";
 import { Counter } from "@/components/ui/counter/Counter";
-import { MealDataType } from "@/interface/typeDefine";
+import type { MealDataType } from "@/interface/typeDefine";
 import { CartContext } from "@/store/CartContext";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

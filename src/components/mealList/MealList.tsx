@@ -1,4 +1,4 @@
-import { type MealDataType } from "@/interface/typeDefine";
+import type { MealDataType } from "@/interface/typeDefine";
 import { Meal } from "./meal/Meal";
 import mealListStyle from "./MealList.module.scss";
 

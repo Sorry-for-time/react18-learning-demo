@@ -1,4 +1,4 @@
-import { CartStateType } from "@/interface/typeDefine";
+import type { CartStateType } from "@/interface/typeDefine";
 import { useEffect, useState } from "react";
 import CartBarStyle from "./CartBar.module.scss";
 import { CartDetail } from "./cartDetail/CartDetail";
