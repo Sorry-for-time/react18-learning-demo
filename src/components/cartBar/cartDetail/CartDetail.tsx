@@ -1,3 +1,4 @@
+import MealStyle from "@/components/mealList/meal/Meal.module.scss";
 import { Backdrop } from "@/components/ui/backdrop/Backdrop";
 import { Counter } from "@/components/ui/counter/Counter";
 import { MealDataType } from "@/interface/typeDefine";
@@ -6,7 +7,7 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext } from "react";
 import CartDetailStyle from "./CartDetail.module.scss";
-import MealStyle from "@/components/mealList/meal/Meal.module.scss";
+
 /**
  * 在图片加载失败的时候添加伪类进行替换显示
  * @param ev 图片加载失败事件
@@ -41,7 +42,7 @@ export function CartDetail(props: {
           <div
             className={CartDetailStyle["clear-cart"]}
             onClick={(): void => {
-              cartCtx.clearCart();
+              cartCtx.setCartHandler("clear");
             }}
           >
             <FontAwesomeIcon icon={faTrash} />
