@@ -69,4 +69,27 @@ export abstract class CommonToolCollection {
       }
     }) as T;
   };
+
+  /**
+   * 将可迭代结构内部的数据根据指定的间隔时间异步返回
+   * @param iterableCon
+   * @param wait 间隔时间, 默认 `200ms`, 也可以是一个返回 number 类型的函数
+   * @returns {AsyncGenerator<Awaited<T>, void, unknown>}
+   */
+  public static readonly asyncDelayBack = async function* <T>(
+    iterableCon: Iterable<T>,
+    wait: number | (() => number) = 0
+  ): AsyncGenerator<Awaited<T>, void, unknown> {
+    for await (const chalk of iterableCon) {
+      yield new Promise<T>((resolve): void => {
+        setTimeout(
+          (): void => {
+            resolve(chalk);
+            chalk;
+          },
+          typeof wait === "function" ? wait() : wait
+        );
+      });
+    }
+  };
 }
