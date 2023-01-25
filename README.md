@@ -1,0 +1,5 @@
+- 一个简单学习(随缘学习) react18 的练习 demo
+- 参考教程: [李立超 React 视频教程](https://www.bilibili.com/video/BV1bS4y1b7NV/?spm_id_from=333.337.search-card.all.click)
+- 练习 demo 使用 vite + ts 的开发配置(因为习惯)
+- ~~尽量确保编写练习的代码风格善良~~
+- ~~使用了 sass, 尽量克制不过渡嵌套, 合理使用 @at-root~~
